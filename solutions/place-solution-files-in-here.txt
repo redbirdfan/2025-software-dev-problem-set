@@ -1,0 +1,17 @@
+Problem 1 - https://leetcode.com/problems/contains-duplicate/description/
+Return true for duplicate number and false for arrays without any duplicates.  Originally ran nested for loops.  Worked, but took too long and errored out on Leetcode.
+Research and used a for each loop, creating a Set in the process.  
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+var containsDuplicate = function(nums) {
+        let seen = new Set();
+        for(let num of nums) {
+            if(seen.has(num)){
+                return true;
+            }
+            seen.add(num);
+        }
+        return false;
+    }
