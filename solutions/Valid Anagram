@@ -1,0 +1,16 @@
+Over complicated at first by checking length and index against what was included in t.  This allowed for a quicker check by sorting and ordering to see if the 2 words were equal.
+
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var isAnagram = function(s, t) {
+    s = s.split('').sort().join('');
+    t = t.split('').sort().join('');
+        if(s !== t) {
+            return false
+        } else if (s === t) {
+                        return true
+                } 
+            };
