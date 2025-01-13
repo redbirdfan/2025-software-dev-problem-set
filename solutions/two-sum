@@ -1,1 +1,14 @@
+https://leetcode.com/problems/two-sum/description/
 
+Need to come up with a quicker solution. To be expected with running a nested loop.  Will need to give more thought to a more efficient answer.
+
+var twoSum = function(nums, target) {
+    let answer = [];
+    for ( i=0 ; i < nums.length-1 ; i++){
+        for( j=i+1 ; j < nums.length ; j++) {
+        if(nums[i]+nums[j] === target) {
+            return [i, j];
+            }
+        } 
+    }
+};
