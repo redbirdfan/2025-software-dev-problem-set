@@ -1,1 +1,47 @@
+//link https://leetcode.com/problems/group-anagrams/
 
+//Having issues filling the third array with BAT on test case.  Will continue working on it tomorrow.
+
+/**
+ * @param {string[]} strs
+ * @return {string[][]}
+ */
+ // alphabatize the strings in the array strs. 
+ //Sort by the indexs that equal each other and return
+
+var groupAnagrams = function(strs) {
+    
+    let anagrams = [];
+
+    let arrayOne = [strs[0]];
+    let arrayTwo = [];
+    let arrayThree = [];
+
+    for (let i = 1; i < strs.length-1; i++) {
+        if (arrayOne[0].split("").sort().join("") === strs[i].split("").sort().join("")) {
+            arrayOne.push(strs[i])
+        } else if (arrayTwo.length === 0 && arrayOne[0].split("").sort().join("") !== strs[i].split("").sort().join("")) {
+            arrayTwo.push(strs[i])
+        } else if (arrayTwo[0].split("").sort().join("") === strs[i].split("").sort().join("")) {
+            arrayTwo.push(strs[i])
+        } else if (arrayThree.length === 0 && arrayTwo[0].split("").sort().join("") !== strs[i].split("").sort().join("") && arrayOne[0].split("").sort().join("") !== strs.split("").sort().join("")) {
+                arrayThree.push(strs[i])
+        } else if (arrayThree[0].split("").sort().join("") === strs[i].split("").sort().join("")) {
+            arrayThree.push(strs[i])
+        }
+    }
+
+    if(arrayThree.length !== 0){
+        anagrams.push(arrayThree.sort())
+    } 
+
+    if(arrayTwo.length !== 0){
+        anagrams.push(arrayTwo.sort())
+    } 
+
+    if(arrayOne.length !== 0){
+        anagrams.push(arrayOne.sort())
+    }
+
+    return arrayThree
+};
