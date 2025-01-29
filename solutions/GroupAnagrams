@@ -1,36 +1,27 @@
 //link https://leetcode.com/problems/group-anagrams/
 
 //Three arrays fill great, showing logic is correct.  Will need to rewrite to create a new array, perhaps changing to Set in order to create as many arrays as needed when there a larger groups of anagrams
+// I evnetually used an object to store the keys of letters for each anagram, and then stored the words as the value for key as an array.  Object is the best way when you are unsure on the amount of arrays you may need.  1-28-25
 
 /**
  * @param {string[]} strs
  * @return {string[][]}
  */
 var groupAnagrams = function(strs) {
-    strs = strs.sort()
-     let anagrams = [];
-    let arrayOne = [strs[0]];
-    let arrayTwo = [];
-    let arrayThree = [];
+    let anagrams = {};
+    let sortedStrs = []
 
-    for (let i = 1; i < strs.length; i++) {
-        if (arrayOne[0].split("").sort().join("") === strs[i].split("").sort().join("")) {
-            arrayOne.push(strs[i])
-        } else if (arrayTwo.length === 0 && arrayOne[0].split("").sort().join("") !== strs[i].split("").sort().join("")) {
-            arrayTwo.push(strs[i])
-        } else if (arrayTwo[0].split("").sort().join("") === strs[i].split("").sort().join("")) {
-            arrayTwo.push(strs[i])
-        } else arrayThree.push(strs[i])
-    }
-    if(arrayThree.length !== 0){
-        anagrams.push(arrayThree.sort())
+    for ( i= 0 ; i < strs.length ; i++) {
+        sortedWord = strs[i].split("").sort().join("");
+        sortedStrs.push(sortedWord)
+        
+        if(!(sortedStrs[i] in anagrams)){
+            anagrams[sortedWord] = [strs[i]];
+        } else {
+            anagrams[sortedWord].push(strs[i]);
+        }
     } 
-    if(arrayTwo.length !== 0){
-        anagrams.push(arrayTwo.sort())
-    } 
-    if(arrayOne.length !== 0){
-        anagrams.push(arrayOne.sort())
-    }
-    return anagrams
-    
+
+    return Object.values(anagrams)
+
 };
