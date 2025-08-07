@@ -12,3 +12,24 @@ var twoSum = function(nums, target) {
         } 
     }
 };
+Here is my quicker solution.  Removed the nested for loop and used a set. Works far faster.
+
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */ 
+ /*originally completed with nested for loops, time too run was long.  Trying to improve*/
+var twoSum = function(nums, target) {
+
+        let numsSet = new Set();
+
+        for (let i = 0 ; i < nums.length ; i++){
+            let searchNum = target - nums[i];
+            if(numsSet.has(searchNum)){
+                return [nums.indexOf(searchNum), i]
+            }else {
+                numsSet.add(nums[i])
+        }
+        }
+        }
