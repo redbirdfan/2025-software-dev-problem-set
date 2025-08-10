@@ -8,9 +8,6 @@ Over complicated at first by checking length and index against what was included
 var isAnagram = function(s, t) {
     s = s.split('').sort().join('');
     t = t.split('').sort().join('');
-        if(s !== t) {
-            return false
-        } else if (s === t) {
-                        return true
-                } 
+
+    return s === t;
             };
