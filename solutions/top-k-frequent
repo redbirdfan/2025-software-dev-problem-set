@@ -1,28 +1,29 @@
 //https://leetcode.com/problems/top-k-frequent-elements/
 
-//Working, but thrown off by negative numbers. I am guessing because of an issue with parsing negative numbers, since the minus is seen as a character and not a value. I Will continue to work on this tomorrow.
-
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number[]}
+ */
 var topKFrequent = function(nums, k) {
-    let tallySheet = {}
 
-    for (i=0 ; i < nums.length ; i++) {
-        num = nums[i]
+    let tally = {};
+    
+    for (let i = 0 ; i < nums.length ; i++){
+        let num = nums[i];
 
-        if(!nums[i] in tallySheet) {
-            tallySheet[num] = 1
-        } else tallySheet[num]++
+        if(tally[num]){
+            tally[num]++;
+        } else {
+            tally[num] = 1;
+        } 
     }
-        let tallies = Object.entries(tallySheet)
-//Had to look sort up for key/value.  This shows we are only concerned with value of the pair to sort. A and B will sort based on difference being positive or not
-        tallies.sort(([, valueA], [, valueB]) => valueB - valueA);
+        let tallyToArray = Object.entries(tally);
 
-        let numsK = tallies.slice(0,k);
-        let returnArray = [];
+        tallyToArray.sort((a, b) => b[1] - a[1]); //This b-a allows sorting descending and a - b would be ascending
 
-        for (i = 0 ; i < k ; i++) {
-            let convert = parseInt(numsK[i][0], 10)
-            returnArray.push(convert)
-        }
+        let topOccuring = tallyToArray.slice(0, k);
 
-        return returnArray
-};
+        let mostFrequent = topOccuring.map(entry => Number(entry[0]));
+
+        return mostFrequent;
